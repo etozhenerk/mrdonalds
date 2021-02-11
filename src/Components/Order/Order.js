@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonCheckout } from "../Styled/ButtonCheckout";
 import { OrderListItem } from "./OrderListItem";
-import { totalPriceItems, formatCurrency } from "../Functions/secondaryFunction";
+import {
+  totalPriceItems,
+  formatCurrency,
+} from "../Functions/secondaryFunction";
 
 const OrderStyled = styled.section`
   position: fixed;
@@ -46,10 +49,22 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders }) => {
-  const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
-  
-  const totalCounter = orders.reduce((result, order) => order.count + result, 0)
+export const Order = ({ orders, setOrders, setOpenItem }) => {
+  const deleteItem = (index) => {
+    const newOrders = orders.filter((item, i) => index !== i);
+
+    setOrders(newOrders);
+  };
+
+  const total = orders.reduce(
+    (result, order) => totalPriceItems(order) + result,
+    0
+  );
+
+  const totalCounter = orders.reduce(
+    (result, order) => order.count + result,
+    0
+  );
 
   return (
     <OrderStyled>
@@ -57,8 +72,14 @@ export const Order = ({ orders }) => {
       <OrderContent>
         {orders.length ? (
           <OrderList>
-            {orders.map((order) => (
-              <OrderListItem order={order} />
+            {orders.map((order, index) => (
+              <OrderListItem
+                key={index}
+                order={order}
+                deleteItem={deleteItem}
+                index={index}
+                setOpenItem={setOpenItem}
+              />
             ))}
           </OrderList>
         ) : (
