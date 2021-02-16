@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -10,6 +10,7 @@ import { Order } from "./Components/Order/Order";
 import { useOpenItem } from "./Components/Hooks/useOpenItem";
 import { useOrders } from "./Components/Hooks/useOrders";
 import { useAuth } from "./Components/Hooks/useAuth";
+import { useTitle } from "./Components/Hooks/useTitle";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB0Hf4Ox0tdUnTL3v3fOkI-B1Ph2oVo6ds",
@@ -29,6 +30,7 @@ function App() {
   const auth = useAuth(authFirebase);
   const openItem = useOpenItem();
   const orders = useOrders();
+  useTitle(openItem.openItem);
 
   return (
     <>

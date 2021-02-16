@@ -79,6 +79,7 @@ export const Order = ({
       email: authentication.email,
       order: newOrder,
     });
+    setOrders([]);
   };
 
   const deleteItem = (index) => {
