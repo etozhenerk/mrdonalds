@@ -41,7 +41,6 @@ const EmptyList = styled.p`
 export const Order = () => {
   const {
     orders: { orders, setOrders },
-    openItem: { setOpenItem },
     auth: { authentication, logIn },
     orderConfirm: { setOpenOrderConfirm },
   } = useContext(Context);
@@ -73,8 +72,7 @@ export const Order = () => {
                 order={order}
                 deleteItem={deleteItem}
                 index={index}
-                setOpenItem={setOpenItem}
-              />
+               />
             ))}
           </OrderList>
         ) : (
@@ -101,7 +99,7 @@ export const Order = () => {
           </ButtonCheckout>
         </>
       ) : (
-        <></>
+        null
       )}
     </OrderStyled>
   );

@@ -34,7 +34,6 @@ function App() {
   const openItem = useOpenItem();
   const orders = useOrders();
   const orderConfirm = useOrderConfirm();
-  const firebaseDatabase = firebase.database;
   useTitle(openItem.openItem);
 
   return (
@@ -44,7 +43,7 @@ function App() {
         openItem,
         orders,
         orderConfirm,
-        firebaseDatabase,
+        firebaseDatabase: firebase.database,
       }}
     >
       <GlobalStyle />
